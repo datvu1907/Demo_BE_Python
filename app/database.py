@@ -14,7 +14,9 @@ except Exception:
 db = client[settings.MONGO_INITDB_DATABASE]
 User = db.users
 Flight = db.flights
+Booking = db.bookings
 User.create_index([("email", pymongo.ASCENDING)], unique=True)
 Flight.create_index([("date", pymongo.ASCENDING)], unique=False)
+Booking.create_index([("date", pymongo.ASCENDING)], unique=False)
 #
 # Flight.create_index([("date"), pymongo.ASCENDING])

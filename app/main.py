@@ -1,7 +1,7 @@
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import auth, user, flight
+from app.routers import auth, user, flight, payment
 from fastapi.security import HTTPBearer
 
 
@@ -24,6 +24,7 @@ app.add_middleware(
 app.include_router(auth.router, tags=['Auth'], prefix='/api/auth')
 app.include_router(user.router, tags=['User'], prefix='/api/user')
 app.include_router(flight.router, tags=['Flight'], prefix='/api/flight')
+app.include_router(payment.router, tags=['Payment'], prefix='/api/payment')
 
 
 @app.get("/api/healthchecker")
