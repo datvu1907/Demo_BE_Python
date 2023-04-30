@@ -1,19 +1,8 @@
+version: "3.10"
 
-version: '3'
 services:
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    env_file:
-      - ./.env
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: datvu1907
-      MONGO_INITDB_ROOT_PASSWORD: 4pHeEqnUrOnBAiCq
-      MONGO_INITDB_DATABASE: flight
-    volumes:
-      - mongo:/data/db
+  app:
+    image: datvu1907/app:dev
     ports:
-      - '6000:27017'
-
-volumes:
-  mongo:
+      - "8000:8080"
+    restart: unless-stopped
