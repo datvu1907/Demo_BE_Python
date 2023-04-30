@@ -1,6 +1,7 @@
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# oauth_2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def hash_password(password: str):

@@ -29,12 +29,12 @@ def get_config():
     return Settings()
 
 
-# class NotVerified(Exception):
-#     pass
+class NotVerified(Exception):
+    pass
 
 
-# class UserNotFound(Exception):
-#     pass
+class UserNotFound(Exception):
+    pass
 
 
 def require_user(Authorize: AuthJWT = Depends()):
@@ -43,11 +43,11 @@ def require_user(Authorize: AuthJWT = Depends()):
         user_id = Authorize.get_jwt_subject()
         user = userEntity(User.find_one({'_id': ObjectId(str(user_id))}))
 
-        # if not user:
-        #     raise UserNotFound('User no longer exist')
+        if not user:
+            raise UserNotFound('User no longer exist')
 
-        # if not user["verified"]:
-        #     raise NotVerified('You are not verified')
+        if not user["verified"]:
+            raise NotVerified('You are not verified')
 
     except Exception as e:
         error = e.__class__.__name__

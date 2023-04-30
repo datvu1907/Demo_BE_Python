@@ -2,13 +2,11 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.routers import auth, user, flight, payment
-from fastapi.security import HTTPBearer
+from fastapi.security import OAuth2PasswordBearer
 
 
 app = FastAPI()
-reusable_oauth2 = HTTPBearer(
-    scheme_name='Authorization'
-)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 origins = [
     settings.CLIENT_ORIGIN,
 ]
